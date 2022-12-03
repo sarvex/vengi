@@ -3,8 +3,10 @@ set(SRCS
 	Constants.h
 	CubicSurfaceExtractor.h CubicSurfaceExtractor.cpp
 	MarchingCubesSurfaceExtractor.h MarchingCubesSurfaceExtractor.cpp
+	DualContouringSurfaceExtractor.h DualContouringSurfaceExtractor.cpp
 	MarchingCubesTables.h
 	Face.h Face.cpp
+	QEF.h QEF.cpp
 	MaterialColor.h MaterialColor.cpp
 	Mesh.h Mesh.cpp
 	Palette.h Palette.cpp
