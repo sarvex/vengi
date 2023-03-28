@@ -1,0 +1,1211 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Voxel editor for linux windows and macosx">
+      
+      
+        <meta name="author" content="Martin Gerhardy">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.8">
+    
+    
+      
+        <title>Examples - vengi - voxel tools</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.1d29e8d0.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+
+
+  
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="vengi - voxel tools - Examples" />
+<meta property="og:description" content="Voxel editor for linux windows and macosx" />
+<meta property="og:url" content="None" />
+<meta property="og:image" content="https://raw.githubusercontent.com/wiki/mgerhardy/vengi/images/voxedit-knight.png" />
+<meta property="og:image:type" content="image/png" />
+
+<meta name="keywords" content="voxel,voxelart,voxeleditor,magicavoxel,qubicle,sandbox,minecraft,quake,starmade,cubeworld,goxel,aceofspades,binvox,cnc,gltf,animation" />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@MartinGerhardy" />
+<meta name="twitter:title" content="vengi - voxel tools - Examples" />
+<meta name="twitter:description" content="Voxel editor for linux windows and macosx" />
+<meta name="twitter:image" content="https://raw.githubusercontent.com/wiki/mgerhardy/vengi/images/voxedit-knight.png" />
+
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#examples" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="vengi - voxel tools" class="md-header__button md-logo" aria-label="vengi - voxel tools" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            vengi - voxel tools
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Examples
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/mgerhardy/vengi" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="vengi - voxel tools" class="md-nav__button md-logo" aria-label="vengi - voxel tools" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    vengi - voxel tools
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/mgerhardy/vengi" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Welcome to vengi
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CHANGELOG/" class="md-nav__link">
+        Changelog
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Basics
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Basics" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Basics
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Dependencies/" class="md-nav__link">
+        Dependencies
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Compilation/" class="md-nav__link">
+        Building
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Configuration/" class="md-nav__link">
+        Configuration
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Formats/" class="md-nav__link">
+        Formats
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LUAScript/" class="md-nav__link">
+        Scripting api
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Palette/" class="md-nav__link">
+        Palette
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          VoxConvert
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="VoxConvert" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          VoxConvert
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Index/" class="md-nav__link">
+        About
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Usage/" class="md-nav__link">
+        Usage
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Configuration/" class="md-nav__link">
+        Configuration
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Examples
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Examples
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#level-of-detail-lod" class="md-nav__link">
+    Level of detail (LOD)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#import-2d-image-as-volume" class="md-nav__link">
+    Import 2d image as volume
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#merge-several-models" class="md-nav__link">
+    Merge several models
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#split-objects-into-single-volumes" class="md-nav__link">
+    Split objects into single volumes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#voxelize-an-obj-gltf-ply-or-stl-file" class="md-nav__link">
+    Voxelize an obj, gltf, ply or stl file
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generate-from-heightmap" class="md-nav__link">
+    Generate from heightmap
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rotate-the-voxels" class="md-nav__link">
+    Rotate the voxels
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#translate-the-voxels" class="md-nav__link">
+    Translate the voxels
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#execute-lua-script" class="md-nav__link">
+    Execute lua script
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extract-palette-png" class="md-nav__link">
+    Extract palette png
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#convert-to-a-different-palette" class="md-nav__link">
+    Convert to a different palette
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extract-single-layers" class="md-nav__link">
+    Extract single layers
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#convert-to-mesh" class="md-nav__link">
+    Convert to mesh
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#batch-convert" class="md-nav__link">
+    Batch convert
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Screenshots/" class="md-nav__link">
+        Screenshots
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          VoxEdit
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="VoxEdit" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          VoxEdit
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../voxedit/Index/" class="md-nav__link">
+        About
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../voxedit/Features/" class="md-nav__link">
+        Features
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../voxedit/Usage/" class="md-nav__link">
+        Usage
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../voxedit/Controls/" class="md-nav__link">
+        Controls
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../voxedit/Configuration/" class="md-nav__link">
+        Configuration
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../voxedit/Screenshots/" class="md-nav__link">
+        Screenshots
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Thumbnailer
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Thumbnailer" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Thumbnailer
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thumbnailer/Index/" class="md-nav__link">
+        About
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thumbnailer/Examples/" class="md-nav__link">
+        Example
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          Development
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Development" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          Development
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Basics/" class="md-nav__link">
+        Basic
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../VisualTests/" class="md-nav__link">
+        Visual Tests
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ShaderTool/" class="md-nav__link">
+        Shader integration
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ComputeShaderTool.md" class="md-nav__link">
+        Compute Shader integration
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#level-of-detail-lod" class="md-nav__link">
+    Level of detail (LOD)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#import-2d-image-as-volume" class="md-nav__link">
+    Import 2d image as volume
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#merge-several-models" class="md-nav__link">
+    Merge several models
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#split-objects-into-single-volumes" class="md-nav__link">
+    Split objects into single volumes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#voxelize-an-obj-gltf-ply-or-stl-file" class="md-nav__link">
+    Voxelize an obj, gltf, ply or stl file
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generate-from-heightmap" class="md-nav__link">
+    Generate from heightmap
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rotate-the-voxels" class="md-nav__link">
+    Rotate the voxels
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#translate-the-voxels" class="md-nav__link">
+    Translate the voxels
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#execute-lua-script" class="md-nav__link">
+    Execute lua script
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extract-palette-png" class="md-nav__link">
+    Extract palette png
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#convert-to-a-different-palette" class="md-nav__link">
+    Convert to a different palette
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extract-single-layers" class="md-nav__link">
+    Extract single layers
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#convert-to-mesh" class="md-nav__link">
+    Convert to mesh
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#batch-convert" class="md-nav__link">
+    Batch convert
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+  <a href="https://github.com/mgerhardy/vengi/edit/master/docs/voxconvert/Examples.md" title="Edit this page" class="md-content__button md-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+
+<h1 id="examples">Examples</h1>
+<p><a href="https://asciinema.org/a/fbcP4hsWvLXYnLyDbkwhEGQaH"><img alt="asciicast" src="https://asciinema.org/a/fbcP4hsWvLXYnLyDbkwhEGQaH.svg" /></a></p>
+<h2 id="level-of-detail-lod">Level of detail (LOD)</h2>
+<p>Generate a lod scaled by 50% from the input model.</p>
+<p><code>./vengi-voxconvert -s --input infile.vox --output output.vox</code></p>
+<h2 id="import-2d-image-as-volume">Import 2d image as volume</h2>
+<p>Imports a 2d image and applies depth to it.</p>
+<p><code>./vengi-voxconvert --image-as-volume --image-as-volume-max-depth 8 --image-as-volume-both-sides true --input infile.png --output output.vox</code></p>
+<p>Import given input image as volume. Uses a depth map to make a volume out of the image. The depth map R channel is using values from 0 (black) to white (255) resulting in voxel heights from 1 to max-height (see <code>--image-as-volume-max-depth</code>).</p>
+<p>The <code>--input</code> with e.g. <code>infile.png</code> will pick the depth map next to the image path called <code>infile-dm.png</code> as depth map.</p>
+<h2 id="merge-several-models">Merge several models</h2>
+<p>Merge several models into one:</p>
+<p><code>./vengi-voxconvert --input one.vox --input two.vox --output onetwo.vox</code></p>
+<h2 id="split-objects-into-single-volumes">Split objects into single volumes</h2>
+<p>Split voxels with the palette index <code>66</code> into own nodes.</p>
+<p><code>./vengi-voxconvert --script splitcolor --scriptcolor 66 --input infile.vox --output outfile.vox</code></p>
+<p>Splitting single objects that are not connected to other objects can also be split into own nodes.</p>
+<p><code>./vengi-voxconvert --script splitobject --input infile.vox --output outfile.vox</code></p>
+<h2 id="voxelize-an-obj-gltf-ply-or-stl-file">Voxelize an obj, gltf, ply or stl file</h2>
+<p>Voxelize an obj and save as magicavoxel (including colors):</p>
+<blockquote>
+<p>You are getting better results if you create a palette from your textures first.</p>
+<p>This can be done by reducing the color to 256 and import that reduced image in
+<a href="../../voxedit/Index/">voxedit</a> as palette.</p>
+<p>For obj the mtl file must be in the same dir as the obj files, as well as the
+potential textures.</p>
+<p>glTF is supported both in ascii and binary - but the satellite files must also
+reside in the same dir as the <code>glb</code> or <code>gltf</code> file.</p>
+</blockquote>
+<p><code>./vengi-voxconvert -set voxformat_scale 2 -set palette /path/to/palette.png --input mesh.obj --output voxels.vox</code></p>
+<blockquote>
+<p>See the <a href="../../Formats/">supported formats</a> for a few more details.</p>
+</blockquote>
+<h2 id="generate-from-heightmap">Generate from heightmap</h2>
+<p>Just specify the heightmap as input file like this:</p>
+<p><code>./vengi-voxconvert --input heightmap.png --output outfile.vox</code></p>
+<p>It's assumed that the given image is a gray scale image - but only the red channel is used anyway.</p>
+<p>If you want to colorize the surface of your heightmap import, you can specify <code>--colored-heightmap</code> - this will use the
+alpha channel of the image as height and the rgb channels of the image to determine the surface color.</p>
+<h2 id="rotate-the-voxels">Rotate the voxels</h2>
+<p>You can rotate the voxels around the x axis by 180 degree like this:</p>
+<p><code>./vengi-voxconvert --rotate x:180 --input infile.vox --output outfile.vox</code></p>
+<p>This of course also works for <code>y</code> and <code>z</code>, too.</p>
+<h2 id="translate-the-voxels">Translate the voxels</h2>
+<p>You can translate the voxels in the world like this:</p>
+<p><code>./vengi-voxconvert --translate 0:10:0 --input heightmap.png --output outfile.vox</code></p>
+<p>This would move the voxels 10 units upwards. But keep in mind that not every format supports
+to store a translation offset.</p>
+<h2 id="execute-lua-script">Execute lua script</h2>
+<p>Use the <code>--script</code> parameter:</p>
+<p><code>./vengi-voxconvert --script "cover 2" --input infile.vox --output outfile.vox</code></p>
+<p>This is executing the script in <code>./scripts/cover.lua</code> with a parameter of <code>2</code>.</p>
+<p><code>./vengi-voxconvert --script "./scripts/cover.lua 2" --input infile.vox --output outfile.vox</code></p>
+<p>This is doing exactly the same as above - just with a full path.</p>
+<p>See the <a href="../../LUAScript/">scripting</a> documentation for further details.</p>
+<h2 id="extract-palette-png">Extract palette png</h2>
+<p>Saves the png in the same dir as the vox file:</p>
+<p><code>./vengi-voxconvert --export-palette --input infile.vox --output outfile.vox</code></p>
+<p>There will be an <code>infile.png</code> now.</p>
+<h2 id="convert-to-a-different-palette">Convert to a different palette</h2>
+<p>Convert the input file colors to a new palette by selecting the closest match:</p>
+<p><code>./vengi-voxconvert -set palette built-in:nippon -set voxformat_createpalette false --input infile.vox --output outfile.vox</code></p>
+<h2 id="extract-single-layers">Extract single layers</h2>
+<p>Extract just a few layers from the input file.</p>
+<p><code>./vengi-voxconvert --filter 1-2,4 --input infile.vox --output outfile.vox</code></p>
+<p>This will export layers 1, 2 and 4.</p>
+<h2 id="convert-to-mesh">Convert to mesh</h2>
+<p>You can export your volume model into a gltf, obj, stl or ply (see <a href="../../Formats/">Formats</a> for more options)</p>
+<p><code>./vengi-voxconvert --input infile.vox --output outfile.obj</code></p>
+<p><code>./vengi-voxconvert --input infile.vox --output outfile.gltf -set voxformat_transform_mesh true -set voxformat_scale 2.0</code></p>
+<h2 id="batch-convert">Batch convert</h2>
+<p>To convert a complete directory of e.g. <code>*.vox</code> to <code>*.obj</code> files, you can use e.g. the bash like this:</p>
+<h3 id="bash-linux-osx">Bash (Linux, OSX)</h3>
+<blockquote>
+<p>Beware - no whitespaces in files</p>
+</blockquote>
+<pre><code class="language-bash">for i in *.vox; do vengi-voxconvert --input &quot;$i&quot; --output &quot;${i%.vox}.obj&quot;; done
+</code></pre>
+<pre><code class="language-bash">for i in *.vxm; do vengi-voxconvert --input &quot;$i&quot; --output &quot;${i%.vxm}.gltf&quot; done
+</code></pre>
+<h3 id="powershell-windows">PowerShell (Windows)</h3>
+<blockquote>
+<p>https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/06-flow-control?view=powershell-7.2</p>
+</blockquote>
+<p>An example for the windows powershell to extract single layers into a new model</p>
+<pre><code class="language-ps">$array = &quot;1-2,5&quot;, &quot;1-2,7&quot;
+foreach ($i in $array){
+  &amp; .\vengi-voxconvert --filter $i --input &quot;input.vox&quot; --output &quot;output_$i.vxm&quot;
+}
+</code></pre>
+<blockquote>
+<p>https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-childitem</p>
+</blockquote>
+<p>Convert all magicavoxel vox files in the current directory into gltf files</p>
+<pre><code class="language-ps">foreach ($file in Get-ChildItem -Filter &quot;*.vox&quot;) {
+   &amp; .\vengi-voxconvert.exe --input &quot;$($file.FullName)&quot; --output &quot;$($file.BaseName).gltf&quot;
+}
+</code></pre>
+<h3 id="batch-file-windows">Batch file (Windows)</h3>
+<blockquote>
+<p>https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/for</p>
+</blockquote>
+<p>Windows batch (or <code>cmd.exe</code>) example to convert all png in the current directory into magicavoxel vox files.</p>
+<pre><code class="language-cmd">for %f in (*.png) do call vengi-voxconvert --input &quot;%~f&quot; --output &quot;%~nf.vox&quot;
+</code></pre>
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../Configuration/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Configuration" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Configuration
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../Screenshots/" class="md-footer__link md-footer__link--next" aria-label="Next: Screenshots" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Screenshots
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/MartinGerhardy" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.0238f547.min.js"></script>
+      
+    
+  </body>
+</html>
