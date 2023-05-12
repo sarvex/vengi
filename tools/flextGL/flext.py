@@ -58,7 +58,7 @@ def download_spec(spec_url, save_as, always_download = False):
     spec_file = os.path.join(spec_dir, save_as)
 
     if always_download or not os.path.exists(spec_file) or file_age(spec_file) > 3*24:
-        print ('Downloading %s' % spec_url)
+        print(f'Downloading {spec_url}')
         urllib.request.urlretrieve(spec_url, spec_file)
 
 ################################################################################
@@ -71,14 +71,11 @@ class Version():
         if profile_or_api == 'vulkan':
             self.api = profile_or_api
         elif profile_or_api in ['es1', 'es2']:
-            self.api = 'gl' + profile_or_api
+            self.api = f'gl{profile_or_api}'
         else:
             self.api = 'gl'
         # Macro name prefix
-        if profile_or_api == 'vulkan':
-            self.prefix = 'VK_'
-        else:
-            self.prefix = 'GL_'
+        self.prefix = 'VK_' if profile_or_api == 'vulkan' else 'GL_'
         self.major = int(major)
         self.minor = int(minor)
         # Release is for Vulkan only
@@ -124,14 +121,16 @@ def parse_profile(filename):
             if match:
                 continue
 
-            # Begin/End Function list mode
-            match = functions_pattern.match(line)
-            if match:
-                if function_mode == False and match.group(1) == 'begin':
+            if match := functions_pattern.match(line):
+                if function_mode == False and match[1] == 'begin':
                     function_mode  = True
-                    blacklist_mode = (match.group(2) == 'blacklist')
+                    blacklist_mode = match[2] == 'blacklist'
                     continue
-                elif function_mode == True and match.group(1) == 'end' and blacklist_mode == (match.group(2) == 'blacklist'):
+                elif (
+                    function_mode == True
+                    and match[1] == 'end'
+                    and blacklist_mode == match[2] == 'blacklist'
+                ):
                     function_mode = False
                     continue
                 else:
@@ -150,29 +149,28 @@ def parse_profile(filename):
                         funcslist.append(name)
                 continue
 
-            # Version command
-            match = version_pattern.match(line)
-            if match:
+            if match := version_pattern.match(line):
                 if version != None:
                     print ('Error (%s:%d): Duplicate version statement' % (filename,line_no))
                     exit(1)
-                if match.group(5) == 'es':
-                    version = Version(match.group(1), match.group(2), None, 'es1' if match.group(1) == '1' else 'es2')
+                if match[5] == 'es':
+                    version = Version(
+                        match[1],
+                        match[2],
+                        None,
+                        'es1' if match[1] == '1' else 'es2',
+                    )
                 else:
-                    version = Version(match.group(1), match.group(2), match.group(4), match.group(5))
+                    version = Version(match[1], match[2], match[4], match[5])
 
                 continue
 
-            # Extra spec URL command
-            match = extraspec_pattern.match(line)
-            if match:
-                extraspec.append(match.group(1))
+            if match := extraspec_pattern.match(line):
+                extraspec.append(match[1])
 
                 continue
 
-            # Extension command
-            match = extension_pattern.match(line)
-            if match:
+            if match := extension_pattern.match(line):
                 if match.group(1) in extension_set:
                     print ('Error (%s:%d): Duplicate extension statement' % (filename, line_no))
                     exit(1)
@@ -190,7 +188,6 @@ def parse_profile(filename):
         exit(1)
 
     if funcslist:
-        #Functions needed by loader code
         if version.api == 'vulkan':
             funcslist += ['GetInstanceProcAddr', 'GetDeviceProcAddr']
         else:
@@ -210,10 +207,18 @@ class Function:
         self.returntype    = rettype
 
     def param_list_string(self):
-        return 'void' if len(self.params) == 0 else ', '.join(['%s %s' % (t, p) for p,t in self.params])
+        return (
+            'void'
+            if len(self.params) == 0
+            else ', '.join([f'{t} {p}' for p, t in self.params])
+        )
 
     def param_type_list_string(self):
-        return 'void' if len(self.params) == 0 else ', '.join(['%s' % t for p,t in self.params])
+        return (
+            'void'
+            if len(self.params) == 0
+            else ', '.join([f'{t}' for p, t in self.params])
+        )
 
 class APISubset:
     def __init__(self, name, types, enums, commands):
@@ -250,9 +255,15 @@ def xml_extract_all_text(node, substitutes):
         elif item.text:
             # Sometimes <type> and <name> is not separated with a space in
             # vk.xml, add it here
-            if fragments and fragments[-1] and fragments[-1][-1].isalnum():
-                if fragments[-1][-1].isalnum() and item.text and item.text[0].isalnum():
-                    fragments += [' ']
+            if (
+                fragments
+                and fragments[-1]
+                and fragments[-1][-1].isalnum()
+                and fragments[-1][-1].isalnum()
+                and item.text
+                and item.text[0].isalnum()
+            ):
+                fragments += [' ']
             fragments += [item.text]
         if item.tail: fragments.append(item.tail)
     return ''.join(fragments).strip()
@@ -262,7 +273,7 @@ def xml_parse_type_name_pair(node):
     type = xml_extract_all_text(node, {'name':''})
     # gl.xml has <ptype> while vk.xml has <type>
     ptype = node.find('ptype')
-    if ptype == None: ptype = node.find('type')
+    if ptype is None: ptype = node.find('type')
     return (name, type, ptype.text.strip() if ptype != None else None)
 
 def extract_enums(feature, enum_extensions, *, extension_number=None, enum_extends_blacklist=set()):
@@ -284,17 +295,12 @@ def extract_enums(feature, enum_extensions, *, extension_number=None, enum_exten
             if 'value' in enum.attrib:
                 value = enum.attrib['value']
 
-            # Bit position
             elif 'bitpos' in enum.attrib:
-                value = '1 << {}'.format(enum.attrib['bitpos'])
+                value = f"1 << {enum.attrib['bitpos']}"
 
-            # Alias
             elif 'alias' in enum.attrib:
                 value = enum.attrib['alias']
 
-            # Calculate enum value from an overengineered set of
-            # inputs. See the spec for details:
-            # https://www.khronos.org/registry/vulkan/specs/1.1/styleguide.html#_assigning_extension_token_values
             else:
                 base_value = 1000000000
                 range_size = 1000
@@ -310,39 +316,32 @@ def extract_enums(feature, enum_extensions, *, extension_number=None, enum_exten
             if extends not in enum_extensions: enum_extensions[extends] = []
             enum_extensions[extends] += [(enum_name, value)]
 
-        # Vulkan enums can provide the value directly
         elif 'value' in enum.attrib:
             subsetEnums += [(enum_name, enum.attrib['value'])]
 
-        # As of Vulkan 1.2.192, enums can be also aliases to other enums. Treat
-        # them the same as enums with values -- the value is simply the aliased
-        # name here.
         elif 'alias' in enum.attrib:
             subsetEnums += [(enum_name, enum.attrib['alias'])]
 
-        # Otherwise the enum references some external enum value. This will be
-        # dereferenced in generate_enums() later.
         else:
             subsetEnums += [(enum_name, None)]
 
     return subsetEnums, enum_extensions
 
 def extract_names(feature, selector):
-    return [element.attrib['name'] for element in feature.findall('./%s[@name]' % selector)]
+    return [
+        element.attrib['name']
+        for element in feature.findall(f'./{selector}[@name]')
+    ]
 
 def parse_int_version(version_str):
     version_pattern = re.compile('(\d)\.(\d)')
     match = version_pattern.match(version_str)
-    return int(match.group(1)) * 10 + int(match.group(2))
+    return int(match[1]) * 10 + int(match[2])
 
 def parse_xml_enums(root, api):
     # In order to have dicts iterable in insertion order in Python < 3.6
     # (https://stackoverflow.com/a/39537308)
-    if sys.version_info >= (3, 6, 0):
-        enums = {}
-    else:
-        enums = OrderedDict()
-
+    enums = {} if sys.version_info >= (3, 6, 0) else OrderedDict()
     for enum in root.findall("./enums/enum"):
         if ('api' in enum.attrib and enum.attrib['api'] != api): continue
         name  = enum.attrib['name']
@@ -350,11 +349,9 @@ def parse_xml_enums(root, api):
         # type attribute (since 1.2.174) is an actual C type, which we don't
         # need.
         if 'type' in enum.attrib and api != 'vulkan':
-            value = "%s%s" % (enum.attrib['value'], enum.attrib['type'])
+            value = f"{enum.attrib['value']}{enum.attrib['type']}"
         elif 'bitpos' in enum.attrib:
-            value = "1 << {}".format(enum.attrib['bitpos'])
-        # GL defines both value and alias, prefer values because the original
-        # aliased value might not exist
+            value = f"1 << {enum.attrib['bitpos']}"
         elif 'value' in enum.attrib:
             value = enum.attrib['value']
         else:
@@ -376,7 +373,7 @@ def parse_xml_types(root, enum_extensions, promoted_enum_extensions, api):
         dependencies = set()
         enum_dependencies = set()
         if 'requires' in type.attrib:
-            dependencies |= set([type.attrib['requires']])
+            dependencies |= {type.attrib['requires']}
 
         # Vulkan type aliases
         alias = None
@@ -385,7 +382,6 @@ def parse_xml_types(root, enum_extensions, promoted_enum_extensions, api):
             definition = '\ntypedef {} {};'.format(type.attrib['alias'], type.attrib['name'])
             alias = type.attrib['alias']
 
-        # Struct / union definition in Vulkan
         elif 'category' in type.attrib and type.attrib['category'] in ['struct', 'union']:
             members = []
             for m in type.findall('member'):
@@ -395,15 +391,14 @@ def parse_xml_types(root, enum_extensions, promoted_enum_extensions, api):
                 # dependencies. Some structures such as VkBaseInStructure or
                 # VkBaseOutStructure have a pointer to itself, which would be
                 # a cycle -- avoid that
-                dependencies |= set([t.text for t in m.findall('type')]) - set([name])
-                enum_dependencies |= set([t.text for t in m.findall('enum')])
+                dependencies |= {t.text for t in m.findall('type')} - {name}
+                enum_dependencies |= {t.text for t in m.findall('enum')}
 
             # Due to VkBaseInStructure / VkBaseOutStructure members pointing to
             # itself, there needs to be `typedef struct Name { ... } Name;`
             # instead of just `typedef struct Name { ... } Name;`.
             definition = '\ntypedef {0} {2} {{\n{1}\n}} {2};'.format(type.attrib['category'], '\n'.join(members), type.attrib['name'])
 
-        # Enum definition in Vulkan
         elif 'category' in type.attrib and type.attrib['category'] == 'enum':
             values = []
             name = type.attrib['name']
@@ -437,33 +432,24 @@ def parse_xml_types(root, enum_extensions, promoted_enum_extensions, api):
                         # If the enum value is a (negative) number, write that
                         if not value[0].isalpha():
                             value_to_write = value
-                        # If it's an alias to a promoted extension and the
-                        # original value haven't been written yet, write the
-                        # core name. If the original value is already written,
-                        # it's better to show the alias explicitly for
-                        # documentation purposes instead of showing the same
-                        # value twice without any apparent reason
-                        elif value in extensions and not value in written_enum_values:
+                        elif (
+                            value in extensions
+                            and value not in written_enum_values
+                        ):
                             value_to_write = extensions[value]
-                        # Otherwise, if it's an alias and the target wasn't
-                        # written yet, it's a problem. There's such a case with
-                        # VK_EXT_filter_cubic enums depending on
-                        # VK_IMG_filter_cubic and the dependency is not
-                        # specified since 1.2.148 anymore. For a lack of better
-                        # short-term solution, we just hardcode the two. See
-                        # test_generate.VkEnumAliasWithoutDependency for a test
-                        # case.
                         else:
                             # TODO: fix properly by having a central place for
                             #   enum values instead of parsing 'bitpos' a
                             #   billion times over in several different places
-                            if not value in written_enum_values:
+                            if value not in written_enum_values:
                                 IMG_filter_cubic_values = {
                                     'VK_FILTER_CUBIC_IMG': '1000015000',
                                     'VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_CUBIC_BIT_IMG': '1 << 13'
                                 }
 
-                                assert value in IMG_filter_cubic_values, "Alias target for %s not found: %s" % (extension, value)
+                                assert (
+                                    value in IMG_filter_cubic_values
+                                ), f"Alias target for {extension} not found: {value}"
                                 value_to_write = IMG_filter_cubic_values[value]
 
                             else:
@@ -486,13 +472,12 @@ def parse_xml_types(root, enum_extensions, promoted_enum_extensions, api):
             else:
                 definition = '\ntypedef int {};'.format(name)
 
-        # Classic type definition
         else:
             definition = xml_extract_all_text(type, {'apientry' : 'APIENTRY'})
 
             # Add all member types to dependencies (can be more than one in
             # case of function pointer definitions)
-            dependencies |= set([t.text for t in type.findall('type')])
+            dependencies |= {t.text for t in type.findall('type')}
 
         # If the type defines something but the definition is empty, our
         # parsing is broken. OTOH, there can be proxy types such as
@@ -543,11 +528,12 @@ def parse_xml_types(root, enum_extensions, promoted_enum_extensions, api):
         for d in type.required_enums:
             enum_dependencies.add(d)
         return dependencies, enum_dependencies
+
     for type in unique_types:
         type.required_types, type.required_enums = gather_type_dependencies(type)
 
     # Reverse the list again to keep the original order
-    return [t for t in reversed(unique_types)], unique_type_names
+    return list(reversed(unique_types)), unique_type_names
 
 def parse_xml_commands(root, type_map):
     commands = {}
@@ -586,7 +572,7 @@ def parse_xml_features(root, version):
     promoted_enum_extensions = {}
     subsets = []
 
-    for feature in root.findall("./feature[@api='%s'][@name][@number]" % version.api):
+    for feature in root.findall(f"./feature[@api='{version.api}'][@name][@number]"):
         # Some Vulkan extension enums get promoted to core in later versions
         # and we can't ignore them because the extension enums would then alias
         # to nonexistent values
@@ -634,7 +620,7 @@ def parse_xml_extensions(root, extensions, enum_extensions, version):
         extension_set.add(name)
         extension = root.find("./extensions/extension[@name='{}{}']".format(version.prefix, name))
         if extension is None:
-            print('%s is not an extension' % name)
+            print(f'{name} is not an extension')
             return []
         required = []
         # Extensions can require other extensions
@@ -646,12 +632,16 @@ def parse_xml_extensions(root, extensions, enum_extensions, version):
         # (and all its dependencies) there so it's early enough
         for interaction in extension.findall('require[@extension]'):
             interaction_suffix = interaction.attrib['extension'][len(version.prefix):]
-            if not interaction_suffix in extension_set and interaction_suffix in [e[0] for e in extensions]:
+            if (
+                interaction_suffix not in extension_set
+                and interaction_suffix in [e[0] for e in extensions]
+            ):
                 required += resolve_extension_dependencies(interaction_suffix)
 
         # Add the original last so the dependencies it needs are before
         required += [name]
         return required
+
     extensions_with_dependencies = []
     for name, _ in extensions:
         extensions_with_dependencies += resolve_extension_dependencies(name)
@@ -760,19 +750,19 @@ def generate_enums(subsets, requiredEnums, enums, version):
     for name, definition in enums.items():
         if name in requiredEnums:
             if enumsDecl: enumsDecl += '\n'
-            enumsDecl += '#define {} {}'.format(name, definition)
+            enumsDecl += f'#define {name} {definition}'
 
     for subset in subsets:
         if subset.enums != []:
             if enumsDecl: enumsDecl += '\n\n'
-            enumsDecl += '/* {}{} */\n'.format(version.prefix, subset.name)
+            enumsDecl += f'/* {version.prefix}{subset.name} */\n'
             for enumName, enumValue in subset.enums:
                 # Vulkan enums can provide the value directly next to
                 # referencing some external enum value
                 if enumValue:
-                    enumsDecl += '\n#define {} {}'.format(enumName, enumValue)
+                    enumsDecl += f'\n#define {enumName} {enumValue}'
                 else:
-                    enumsDecl += '\n#define {} {}'.format(enumName, enums[enumName])
+                    enumsDecl += f'\n#define {enumName} {enums[enumName]}'
 
     return enumsDecl
 
@@ -888,11 +878,11 @@ def generate_source(argsstring, options, version, enums, functions_by_category, 
                           'raw_enums': raw_enums,
                           'args': argsstring}
     if not os.path.isdir(options.template_dir):
-        print ('%s is not a directory' % options.template_dir)
+        print(f'{options.template_dir} is not a directory')
         exit(1)
 
     if os.path.exists(options.outdir) and not os.path.isdir(options.outdir):
-        print ('%s is not a directory' % options.outdir)
+        print(f'{options.outdir} is not a directory')
         exit(1)
 
     if not os.path.exists(options.outdir):
@@ -903,10 +893,10 @@ def generate_source(argsstring, options, version, enums, functions_by_category, 
     generatedFiles = 0
     allFiles       = 0;
 
-    for template_path in glob('%s/*.template' % os.path.abspath(options.template_dir)):
+    for template_path in glob(f'{os.path.abspath(options.template_dir)}/*.template'):
 
         infile = os.path.basename(template_path)
-        outfile = '%s/%s' % (options.outdir, template_pattern.match(infile).group(1))
+        outfile = f'{options.outdir}/{template_pattern.match(infile)[1]}'
 
         template = engine.get_template(infile)
 
@@ -914,7 +904,7 @@ def generate_source(argsstring, options, version, enums, functions_by_category, 
 
         with open(outfile, 'w') as out:
             out.write(template.render(template_namespace))
-            print("Successfully generated %s" % outfile)
+            print(f"Successfully generated {outfile}")
             generatedFiles += 1;
 
     print("Generated %d of %d files" % (generatedFiles, allFiles))

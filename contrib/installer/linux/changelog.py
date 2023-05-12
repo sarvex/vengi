@@ -19,7 +19,7 @@ def parse_markdown_changelog(markdown_changelog: str) -> str:
         release = "unstable"
         parsed_date = None
         try:
-            parsed_date = parse(date + " 00:00:00-00:00")
+            parsed_date = parse(f"{date} 00:00:00-00:00")
         except:
             release = "UNRELEASED"
             parsed_date = datetime.now(timezone.utc)
@@ -31,9 +31,8 @@ def parse_markdown_changelog(markdown_changelog: str) -> str:
             changes = section.strip().split("\n")
             for change in changes:
                 change = re.sub(cleanup_change_regex, "", change.strip())
-                if not firstchange:
-                    if change.endswith(":"):
-                        output += "\n"
+                if not firstchange and change.endswith(":"):
+                    output += "\n"
                 firstchange = False
                 change = change.replace("`", "")
                 change = re.sub(url_regex, r"\1", change)

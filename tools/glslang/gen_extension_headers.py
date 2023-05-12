@@ -21,9 +21,10 @@ import os
 def generate_main(glsl_files, output_header_file):
     # Write commit ID to output header file
     with open(output_header_file, "w") as header_file:
-        # Copyright Notice
-        header_string =  '/***************************************************************************\n'
-        header_string += ' *\n'
+        header_string = (
+            '/***************************************************************************\n'
+            + ' *\n'
+        )
         header_string += ' * Copyright (c) 2015-2021 The Khronos Group Inc.\n'
         header_string += ' * Copyright (c) 2015-2021 Valve Corporation\n'
         header_string += ' * Copyright (c) 2015-2021 LunarG, Inc.\n'
@@ -44,13 +45,12 @@ def generate_main(glsl_files, output_header_file):
             filename = os.path.basename(i)
             symbol_name = filename.split(".")[0]
             symbol_name_list.append(symbol_name)
-            header_name = symbol_name + ".h"
+            header_name = f"{symbol_name}.h"
             header_str = 'std::string %s_GLSL = R"(\n%s\n)";\n' % (symbol_name, glsl_contents)
             header_str += '\n'
             header_file.write(header_str)
 
-        contents = ''
-        contents += '\n'
+        contents = '' + '\n'
         contents += 'std::string getIntrinsic(const char* const* shaders, int n) {\n'
         contents += '\tstd::string shaderString = "";\n';
 
@@ -75,21 +75,21 @@ def main():
     i = 0
     while i < len(sys.argv):
         opt = sys.argv[i]
-        i = i + 1
+        i += 1
 
-        if opt == "-i" or opt == "-o":
+        if opt in ["-i", "-o"]:
             if i == len(sys.argv):
-                raise Exception("Expected path after {}".format(opt))
+                raise Exception(f"Expected path after {opt}")
             val = sys.argv[i]
-            i = i + 1
+            i += 1
             if (opt == "-i"):
                 input_dir = val
             elif (opt == "-o"):
                 output_file = val
             else:
-                raise Exception("Unknown flag {}".format(opt))
+                raise Exception(f"Unknown flag {opt}")
 
-    glsl_files = glob.glob(input_dir + '/*.glsl')
+    glsl_files = glob.glob(f'{input_dir}/*.glsl')
 
     # Generate main header
     generate_main(glsl_files, output_file)

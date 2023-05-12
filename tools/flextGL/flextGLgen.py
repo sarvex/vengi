@@ -21,12 +21,12 @@ def main(argsstring, options, profile):
     # Download spec file(s) if necessary
     if version.api == 'vulkan':
         if version.release:
-            version_string = 'v{}.{}.{}'.format(version.major, version.minor, version.release)
+            version_string = f'v{version.major}.{version.minor}.{version.release}'
             if version.major == 1 and version.minor == 0:
                 spec_url = flext.vk_spec_url10.format(version_string)
             else:
                 spec_url = flext.vk_spec_url.format(version_string)
-            spec_file = 'vk.{}.xml'.format(version_string)
+            spec_file = f'vk.{version_string}.xml'
         else:
             spec_url = flext.vk_spec_url.format('main')
             spec_file = 'vk.xml'
@@ -69,7 +69,7 @@ def main(argsstring, options, profile):
 
         # The <extensions> and <commands> contents are merged
         for i in ['extensions', 'commands']:
-            extension_point = root.findall('./{}'.format(i))[0];
+            extension_point = root.findall(f'./{i}')[0];
             for member in extra.iter(i):
                 extension_point.extend(member)
 
@@ -110,7 +110,7 @@ def parse_args(): # pragma: no cover
         parser.print_help()
         exit(1)
 
-    if options.template_dir == None:
+    if options.template_dir is None:
         options.template_dir = os.path.join(flext.default_template_root, options.template)
 
     return options, args[0]
